@@ -1,0 +1,46 @@
+{% extends 'engine/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Update Post
+{% endblock title %} 
+
+{% block page_header %}
+<div class="container" style="margin-top: 200px;">
+    {% if messages %}
+    <div class="alert alert-warning">
+      {% for msg in messages %}
+        {{ msg }}
+      {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 w-50">
+    <form action="{% url 'update_post' id=current_post.id %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-8">{{ form.title |as_crispy_field }}</div>
+            <div class="col-4">{{ form.category |as_crispy_field  }}</div>
+        </div>
+        <div>
+            {{ form.summary |as_crispy_field }}
+        </div>
+        {{ form.content |as_crispy_field }}
+        <br>
+
+        <input type="submit" value="submit" class="btn btn-success mb-4 mt-4">
+    </form>
+</div>
+
+
+<br><br><br><br><br>   
+
+<!--footer section-->
+{% block footer %}
+  {% include 'engine/footer.html' %}
+{% endblock footer %}
+<!--end of footer section-->
+{% endblock %}

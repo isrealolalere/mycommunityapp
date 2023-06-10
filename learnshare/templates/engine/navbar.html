@@ -1,0 +1,95 @@
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+          <button class="navbar-toggler navbar-toggler d-lg-none d-block" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+          aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+          <ul class="navbar-nav nav-1 mb-2 mb-lg-0">
+                    <!-- Navbar brand -->
+            <li>
+              <a class="nav-link" href="{% url 'home' %}">LearnShare</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about_us' %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'review_page' %}">Send a review</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'top_posts' %}">Top authors</a>
+            </li>
+            {% if not user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login_view' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+            </li>
+            {% endif %}
+
+          </ul>
+        </div>
+        <!--NEW PROFILE DROPDOWN-->
+        <ul class="navbar-nav d-flex flex-row">
+          <li class="nav-item">
+            {% if category_form %}
+              {% block searchform %}
+              <div class="me-3">
+                  <form action="{% url 'home' %}" method="post" class="d-flex" role="search">
+                      {% csrf_token %}
+                      {{ category_form }}
+                      <span><button class="btn btn-primary" type="submit" style="margin-left:-20px;"><i class="fas fa-filter"></i></button></span>
+                  </form>
+              </div>
+              {% endblock %}
+            {% endif %}
+
+          </li>
+          {% if user.is_authenticated %}
+                      <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+            My dashboard
+            <img
+            src="{{ user_info.user_img.url }}"
+            class="rounded-circle"
+            height="30"
+            width="30"
+            alt="Profile img"
+            loading="lazy"
+            />
+            </a>
+            <ul class="dropdown-menu text-center" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="nav-link text-dark" href="{% url 'profile_page' user=request.user.username %}">My Profile</a>
+              </li>
+              <li>
+                <a class="nav-link text-dark" href="{% url 'logout_view' %}">Logout</a>
+              </li>
+              <li>
+                <a class="nav-link text-dark" href="{% url 'add_post' %}">Make a post</a>
+              </li>
+            </ul>
+          </li>
+          {% endif %}
+       </ul>
+       <!--END OF NEW PROFILE DROPDOWN-->
+      </div>
+    </nav>
+    <!-- End of Navbar -->
+  </header>
+  <!--Main Navigation-->
+<!-- END OF NEW NAVBAR -->

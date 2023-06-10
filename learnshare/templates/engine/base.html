@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+
+
+    {% block extra_style %}
+
+    <style>
+      /* styling the first navbar to the left on large screen*/
+      @media(min-width: 992px){
+
+        .navbar-nav.nav-1{
+          left: 0;
+          width: 100%;
+        }
+
+      }
+
+      .slider {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+      }
+
+      .slider-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+      }
+
+      .slider-wrapper img {
+        width: 100% !important;
+        height: auto;
+        object-fit: cover;
+      }
+
+      .slider-controls {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .prev-btn,
+      .next-btn {
+        padding: 10px 20px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #333;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+
+      .form-text.text-muted {
+        display: none;
+      }
+
+
+    </style>
+
+    {% endblock extra_style %}
+
+    
+    <link
+      href="{% static 'mdb5\css\mdb.dark.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'mdb5\css\mdb.dark.min.css.map' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'mdb5\css\mdb.dark.rtl.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'mdb5\css\mdb.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'mdb5\css\mdb.rtl.min.css' %}"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <!-- <link
+      href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}"
+      rel="stylesheet"
+    /> -->
+
+    <!--MDB JAVASCRIPT CODE-->
+    <script src="{% static 'mdb5\js\mdb.min.js' %}"></script>
+    <!-- <script src="{% static 'mdb5\js\mdb.min.js.map' %}"></script> -->
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+
+<body>
+<!--navbar-->
+{% block nav_bar %}
+{% include 'engine/navbar.html' %}
+{% endblock %}
+  
+{% if messages %}
+<div class="container">
+  {% for msg in messages %}
+    <p>
+      {{ msg }}
+    </p>
+  {% endfor %}
+</div>
+{% endif %}
+
+
+      
+      {% block page_header %}
+      {% endblock %}
+
+
+      {% block content %} 
+
+      <br><br><br>
+
+      <!--footer section-->
+      {% block footer %}
+        {% include 'engine/footer.html' %}
+      {% endblock footer %}
+      <!--end of footer section-->
+
+      {% endblock %}
+
+
+
+  {% block script %}
+  <script src="{% static 'js/slider.js' %}"></script>
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Code to be executed when the HTML content has finished loading
+
+        setInterval(function() {
+
+          // Code to be executed at a specific time interval
+          const sliderWrapper = document.querySelector('.slider-wrapper');
+          const prevBtn = document.querySelector('.prev-btn');
+          const nextBtn = document.querySelector('.next-btn');
+          const slideWidth = sliderWrapper.clientWidth;
+
+          currentPosition += slideWidth;
+          if (currentPosition > 0) {
+            currentPosition = -(slideWidth * (sliderWrapper.children.length - 1));
+          }
+          sliderWrapper.style.transform = `translateX(${currentPosition}px)`;
+        }, 3000);
+      
+      });
+
+
+      const sliderWrapper = document.querySelector('.slider-wrapper');
+      const prevBtn = document.querySelector('.prev-btn');
+      const nextBtn = document.querySelector('.next-btn');
+      const slideWidth = sliderWrapper.clientWidth;
+      let currentPosition = 0;
+
+      prevBtn.addEventListener('click', () => {
+        currentPosition += slideWidth;
+        if (currentPosition > 0) {
+          currentPosition = -(slideWidth * (sliderWrapper.children.length - 1));
+        }
+        sliderWrapper.style.transform = `translateX(${currentPosition}px)`;
+      });
+
+      nextBtn.addEventListener('click', () => {
+        currentPosition -= slideWidth;
+        if (currentPosition < -(slideWidth * (sliderWrapper.children.length - 1))) {
+          currentPosition = 0;
+        }
+        sliderWrapper.style.transform = `translateX(${currentPosition}px)`;
+      });
+  </script>
+  {% endblock %}
+  </body>
+</html>

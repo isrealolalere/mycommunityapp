@@ -1,0 +1,50 @@
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <button class="navbar-toggler navbar-toggler d-lg-none d-block" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+          aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+          <ul class="navbar-nav nav-1 mb-2 mb-lg-0">
+                    <!-- Navbar brand -->
+            <li>
+              <a class="nav-link" href="{% url 'home' %}">LearnShare</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Send a review</a>
+            </li>
+            {% if not user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login_view' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+            </li>
+            {% endif %}
+
+          </ul>
+        </div>
+        <!--NEW PROFILE DROPDOWN-->
+        <ul class="navbar-nav d-flex flex-row">
+          <li class="nav-item">
+            
+            {% block searchform %}
+            {% endblock %}
+
+          </li>
+       </ul>
+       <!--END OF NEW PROFILE DROPDOWN-->
+      </div>
+    </nav>
+    <!-- End of Navbar -->
+  </header>
+  <!--Main Navigation-->
+<!-- END OF NEW NAVBAR -->

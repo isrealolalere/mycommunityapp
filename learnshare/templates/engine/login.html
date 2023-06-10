@@ -1,0 +1,43 @@
+{% extends 'engine/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Login
+{% endblock title %} 
+
+{% block page_header %}
+<div class="container text-dark w-50" style="margin-top: 200px;">
+    {% if messages %}
+    <div class="alert alert-warning">
+      {% for msg in messages %}
+        {{ msg }}
+      {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 w-50">
+    <form action="{% url 'login_view' %}" method="post">
+        {% csrf_token %}
+        {{ form |crispy }}
+        <br>
+        <input type="submit" value="Login" class="btn btn-primary">
+        <p><br>
+            
+            No account yet? <a href="{% url 'signup' %}">sign up now !</a> and lets build the community together
+        </p>
+    </form>
+</div>
+
+
+<br><br>  
+
+<!--footer section-->
+{% block footer %}
+  {% include 'engine/footer.html' %}
+{% endblock footer %}
+<!--end of footer section-->
+
+{% endblock %}

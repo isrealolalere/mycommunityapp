@@ -1,0 +1,19 @@
+<div class="dropdown-content">
+    <!-- Sidebar -->
+          <a href="#">
+          <img
+            src="{{ user_info.user_img.url }}"
+            class="rounded-circle me-5"
+            height="100"
+            width="100"
+            alt="Profile img"
+            loading="lazy"
+          />
+          </a>
+          <a href="{% url 'user_info_profile' user=request.user.username %}"><i class="fas fa-user me-2"></i><span>Profile</span></a>
+          <a href="{% url 'update_profile' %}"><i class="fas fa-user-edit me-2"></i><span>Update Profile</span></a>
+          <a href="{% url 'profile_page' user=request.user.username %}"><i class="fas fa-list me-2"></i><span>My Post</span></a>
+          <a href="{% url 'user_statistics' user_id=request.user.id %}"><i class="fas fa-chart-bar me-2"></i><span>Statistics</span></a>
+          <a href="{% url 'review_page' %}"><i class="fas fa-comments me-2"></i><span>Send a review</span></a>
+    <!-- Sidebar -->
+  </div>

@@ -1,0 +1,208 @@
+{% extends 'engine/base.html' %} 
+
+{% block title %} 
+Profile
+{% endblock title %} 
+
+{% block extra_style %}
+<style>
+  /* for large screen */
+  @media (min-width:768px) {
+    .small-screen{
+      display: none;
+    }
+    
+  }
+  /* for small screen */
+  @media (max-width:767px) {
+    .large-screen {
+      display: none;
+    }
+
+    
+  }
+
+  /* dropdown dashboard */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+  }
+
+  .dropdown-content{
+    display: none;
+    position: absolute;
+    left: 0;
+    z-index: 2;
+  }
+
+  .dropdown-content a{
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    background-color: rgb(70, 62, 62, 0.9) !important;
+  }
+  .dropdown-content.show {
+    display: block;
+  }
+
+  .dropdown-content a span{
+    color: aliceblue;
+  }
+
+  #pro-links{
+    margin:20px;
+    margin-top: 50px;
+    padding-top: 50px;
+  }
+  .img-large {
+    margin-inline: 40px;
+    margin-top: 20px;
+  }
+</style>
+{% endblock %}
+
+{% block nav_bar %}
+{% include 'engine/profile_dashboard_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+  
+<div class="container mt-5 w-75">
+  {% if messages %}
+  <div class="alert alert-warning">
+    {% for msg in messages %}
+      {{ msg }}
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+
+
+<!--DISPLAY FOR LARGER SCREENS-->
+<div class="container-fluid large-screen">
+  <div class="row">
+    <div class="d-flex">
+      <!--sidebar-->
+      {% include 'engine/sidebar-lg.html' %}
+      <!--end of sidebar-->
+      <div class="col-9 overflow-auto mt-5" style="margin-left: 25%;">
+        <!-- Display content goes here -->
+
+        {% if user_posts %} 
+          {% for post in user_posts %}
+              <div class="card">
+                  <h5 class="card-header text-light">{{ post.title }} by {{ post.author.user.username }}</h5>
+                  <div class="card-body">
+                      <h5 class="card-title">Special title treatment</h5>
+                      <p class="card-text">{{ post.content }}.</p>
+                      <a href="{% url 'delete_post' id=post.id %}" class="btn btn-danger">Delete</a> <a href="{% url 'update_post' id=post.id %}" class="btn btn-success">Edit Post</a> 
+                  </div>
+              </div>
+              <br/><br/>
+          {% endfor %}
+        {% else %}
+            <div>
+                No Post
+            </div>
+        {% endif %}
+
+        
+      <br><br><br><br><br>   
+
+      <!--footer section-->
+      {% block footer %}
+        {% include 'engine/footer.html' %}
+      {% endblock footer %}
+      <!--end of footer section-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--END OF DISPLAY FOR LARGER SCREENS-->
+
+<!--DISPLAY FOR SMALLER SCREENS-->
+<div class="container-fluid small-screen">
+  <!--dashboard dropdown-->
+  <button class="dropdown-button mt-5 border-0 p-2">
+    <i class="fas fa-bars"></i>
+    My dashboard
+    <img
+      src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+      class="rounded-circle"
+      height="25"
+      alt="Black and White Portrait of a Man"
+      loading="lazy"
+    />
+  </button>
+  <br>
+  <div class="dropdown">
+    <!--dashboard-->
+    {% include 'engine/sidebar-sm.html' %}
+    <!--end of dashboard-->
+  </div>
+
+  <div class="me-auto mt-5 w-75 border">
+    <!-- Display content goes here -->
+
+    {% if user_posts %} 
+      {% for post in user_posts %}
+          <div class="card">
+              <h5 class="card-header text-light">{{ post.title }} by {{ post.author.user.username }}</h5>
+              <div class="card-body">
+                  <h5 class="card-title">Special title treatment</h5>
+                  <p class="card-text">{{ post.content }}.</p>
+                  <a href="{% url 'delete_post' id=post.id %}" class="btn btn-danger">Delete</a> <a href="{% url 'update_post' id=post.id %}" class="btn btn-success">Edit Post</a> 
+              </div>
+          </div>
+          <br/><br/>
+      {% endfor %}
+    {% else %}
+        <div>
+            No Post
+        </div>
+    {% endif %}
+
+    <br><br>
+
+    <!--footer section-->
+    {% include 'engine/footer.html' %}
+
+    <!--end of footer section-->
+  </div>
+</div>
+<!--END OF DISPLAY FOR SMALLER SCREENS-->
+
+
+
+
+
+{% block script %}
+<script>
+  //Get the dropdown button and the dropdown content
+  const dropdownButton = document.querySelector('.dropdown-button');
+  const dropdownContent = document.querySelector('.dropdown-content');
+
+  //adding a click event listener to the dropdown button
+  dropdownButton.addEventListener('click', function () {
+    dropdownContent.classList.toggle('show');
+
+    //Adjust the width of the dropdown content on window resize
+    if(dropdownContent.classList.contains('show')){
+      dropdownContent.style.width = (window.innerWidth / 2) + 'px';
+    } else {
+      dropdownContent.style.width = '';
+    }
+  });
+
+  // update the width of the dropdown content on window resize
+  window.addEventListener('resize', function () {
+    if (dropdownContent.classList.contains('show')) {
+      dropdownContent.style.width = window.innerWidth + 'px';
+    }
+  });
+</script>
+{% endblock %}
+
+{% endblock content %}
