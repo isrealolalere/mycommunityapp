@@ -31,11 +31,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'signup' %}">Signup</a>
             </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout_view' %}">Logout</a>
+            </li>
             {% endif %}
             <li class="nav-item">
               {% if category_form %}
                 {% block searchform %}
-                <div class="me-3 w-25">
+                <div class="me-auto w-50">
                     <form action="{% url 'home' %}" method="post" class="d-flex" role="search">
                       {% csrf_token %}
                       {{ category_form }}

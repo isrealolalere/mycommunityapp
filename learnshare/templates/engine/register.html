@@ -1,9 +1,14 @@
 {% extends 'engine/base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}
 Register
 {% endblock title %} 
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}" />
+{% endblock %}
 
 {% block page_header %}
 <div class="container" style="margin-top: 200px;">
@@ -18,7 +23,7 @@ Register
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4 w-50">
+<div class="container form-div mt-4">
     <form action="{% url 'signup' %}" enctype="multipart/form-data" method="post">
         {% csrf_token %}
 

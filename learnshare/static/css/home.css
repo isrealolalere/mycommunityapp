@@ -254,8 +254,9 @@
   padding: 10px 15px;
   border-radius: 50%;
   position: absolute;
+  margin-top: 40px;
   top: 50%;
-  right: 4px; /* Adjust the horizontal position */
+  right: 0px; /* Adjust the horizontal position */
   transform: translate(0, -50%);
   /* Additional styles for the icon */
 }
