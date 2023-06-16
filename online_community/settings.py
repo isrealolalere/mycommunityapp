@@ -93,7 +93,6 @@ WSGI_APPLICATION = 'online_community.wsgi.application'
 
 #-------------------------
 #POSTFRESQL DATABASE CONFIG
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
