@@ -8,7 +8,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarExample01">
           <ul class="navbar-nav nav-1 mb-2 mb-lg-0">
-                    <!-- Navbar brand -->
+            <!-- Navbar brand -->
             <li>
               <a class="nav-link" href="{% url 'home' %}">LearnShare</a>
             </li>
@@ -32,27 +32,25 @@
                 <a class="nav-link" href="{% url 'signup' %}">Signup</a>
             </li>
             {% endif %}
-
+            <li class="nav-item">
+              {% if category_form %}
+                {% block searchform %}
+                <div class="me-3 w-25">
+                    <form action="{% url 'home' %}" method="post" class="d-flex" role="search">
+                      {% csrf_token %}
+                      {{ category_form }}
+                      <span><button class="btn btn-primary filter-btn" type="submit" style="margin-left:-20px;"><i class="fas fa-filter"></i></button></span>
+                    </form>
+                </div>
+                {% endblock %}
+              {% endif %}
+            </li>
           </ul>
         </div>
         <!--NEW PROFILE DROPDOWN-->
-        <ul class="navbar-nav d-flex flex-row">
-          <li class="nav-item">
-            {% if category_form %}
-              {% block searchform %}
-              <div class="me-3">
-                  <form action="{% url 'home' %}" method="post" class="d-flex" role="search">
-                      {% csrf_token %}
-                      {{ category_form }}
-                      <span><button class="btn btn-primary" type="submit" style="margin-left:-20px;"><i class="fas fa-filter"></i></button></span>
-                  </form>
-              </div>
-              {% endblock %}
-            {% endif %}
-
-          </li>
+        <ul class="navbar-nav nav-profile d-flex flex-row">
           {% if user.is_authenticated %}
-                      <!-- Dropdown -->
+          <!-- Dropdown -->
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"

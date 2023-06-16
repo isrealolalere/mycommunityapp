@@ -123,18 +123,11 @@ Profile
 <!--END OF DISPLAY FOR LARGER SCREENS-->
 
 <!--DISPLAY FOR SMALLER SCREENS-->
-<div class="container-fluid small-screen">
+<div class="container-fluid w-100 small-screen">
   <!--dashboard dropdown-->
   <button class="dropdown-button mt-5 border-0 p-2">
     <i class="fas fa-bars"></i>
     My dashboard
-    <img
-      src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-      class="rounded-circle"
-      height="25"
-      alt="Black and White Portrait of a Man"
-      loading="lazy"
-    />
   </button>
   <br>
   <div class="dropdown">
@@ -143,7 +136,7 @@ Profile
     <!--end of dashboard-->
   </div>
 
-  <div class="me-auto mt-5 w-75 border">
+  <div class="me-auto mt-5 w-100 border">
     <!-- Display content goes here -->
 
     {% if user_posts %} 
@@ -165,12 +158,12 @@ Profile
     {% endif %}
 
     <br><br>
-
-    <!--footer section-->
-    {% include 'engine/footer.html' %}
-
-    <!--end of footer section-->
   </div>
+  <br><br>
+  <!--footer section-->
+  {% include 'engine/footer.html' %}
+
+  <!--end of footer section-->
 </div>
 <!--END OF DISPLAY FOR SMALLER SCREENS-->
 

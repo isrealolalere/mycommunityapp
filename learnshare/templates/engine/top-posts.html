@@ -1,9 +1,14 @@
 {% extends 'engine/base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}
 Top authors
 {% endblock title %} 
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/topposts.css' %}" />
+{% endblock %}
 
 {% block page_header %}
 <div class="container bg-secondary p-3 rounded-5 w-100 text-light" style="margin-top: 100px;">
@@ -13,6 +18,8 @@ Top authors
     </div>
     <div class="description">
         You can also be among the top authors when you meet the following requirements.
+        <br>
+        <br>
         <ul>
             <li>Create 10 posts</li>
             <li>Have a total likes of 25</li>
@@ -23,49 +30,51 @@ Top authors
 {% endblock %}
 
 {% block content %}
-<div class="container m-4 w-100">
-    <h3>Top authors</h3>
-    <br>
-    <div class="container">
+<div class="container parent w-100">
+    <div class="container child">
+        <h3 class="me-auto text-center mt-3">Top authors</h3>
+        <br>
         <!-- for admin -->
+        <div class="container">
 
-        <div class="row shadow-2-strong text-center text-dark mb-4 rounded-5">
-            <div class="col-3">
-                <img src="{{ user_info.user_img.url }}" alt="{{ post.author.user.username }}" class="rounded-circle m-2" height="50" width="50">
-            </div>
-            <div class="col-3 mt-3">
-                Name
-            </div>
-            <div class="col-3 mt-3">
-                Posts
-            </div>
-            <div class="col-3 mt-3">
-                Likes
-            </div>
-        </div>
-        
-        <!-- end for admin -->
-    </div>
-    {% if all_top_posts %}
-    <div class="container">
-        {% for post in all_top_posts %}
             <div class="row shadow-2-strong text-center text-dark mb-4 rounded-5">
                 <div class="col-3">
-                    <img src="{{ post.user_img.url }}" alt="{{ post.author.user.username }}" class="rounded-circle m-2" height="50" width="50">
+                    <img src="{{ user_info.user_img.url }}" alt="{{ post.author.user.username }}" class="rounded-circle m-2" height="50" width="50">
                 </div>
                 <div class="col-3 mt-3">
-                    {{ post.user.first_name }} {{ post.user.last_name }}
+                    Name
                 </div>
                 <div class="col-3 mt-3">
-                    {{ post.post_count }} Posts 
+                    Posts
                 </div>
                 <div class="col-3 mt-3">
-                    {{ post.total_likes }} Likes
+                    Likes
                 </div>
             </div>
-        {% endfor %}
+            
+        </div>
+        <!-- end for admin -->
+        {% if all_top_posts %}
+        <div class="container">
+            {% for post in all_top_posts %}
+                <div class="row shadow-2-strong text-center text-dark mb-4 rounded-5">
+                    <div class="col-3">
+                        <img src="{{ post.user_img.url }}" alt="{{ post.author.user.username }}" class="rounded-circle m-2" height="50" width="50">
+                    </div>
+                    <div class="col-3 mt-3">
+                        {{ post.user.first_name }} {{ post.user.last_name }}
+                    </div>
+                    <div class="col-3 mt-3">
+                        {{ post.post_count }} Posts 
+                    </div>
+                    <div class="col-3 mt-3">
+                        {{ post.total_likes }} Likes
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
 </div>
 
 <br><br>

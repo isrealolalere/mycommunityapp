@@ -133,12 +133,18 @@ def register(request):
 @login_required
 def update_profile(request):
     if request.method == 'POST':
-        update_profile_form = UpdateProfileForm(request.POST, instance=request.user)
+        update_profile_form = UpdateProfileForm(request.POST, request.FILES or None, instance=request.user)
         if update_profile_form.is_valid():
+            new_img = update_profile_form.cleaned_data.get('profile_img')
+            user = User_info.objects.filter(user=request.user)[0]
+            user.user_img = new_img
+            user.save()
+
             update_profile_form.save()
             messages.success(request, "Profile information successfully updated")
             return redirect('user_info_profile', user=request.user)
         else:
+            print(update_profile_form.errors)
             messages.success(request, "Invalid informations")
             return redirect('update_profile')
     else:
@@ -437,4 +443,9 @@ def top_posts(request):
 
 
 def about_us(request):
-    return render(request, 'engine/about.html')
+    if isinstance(request.user, AnonymousUser):
+        user_info = ""
+    else:
+        user_info = User_info.objects.filter(user=request.user)[0]
+
+    return render(request, 'engine/about.html', context={'user_info':user_info})

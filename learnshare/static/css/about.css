@@ -1,25 +1,65 @@
-.text-section {
+/* for small screen */
+@media (max-width:767px) {
+  /* animation */
+  
+  .text-section {
     opacity: 0; /* Initially hide the element */
     animation: fade-in 1s ease-in-out forwards; /* Apply the fade-in animation */
   
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0; /* Start with 0 opacity */
   }
-  100% {
-    opacity: 1; /* Fade in to full opacity */
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0; /* Start with 0 opacity */
+    }
+    100% {
+      opacity: 1; /* Fade in to full opacity */
+    }
   }
+
+  .title {
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .title.show {
+      opacity: 1;
+      transform: translateX(0);
+  }
+  
 }
 
-.title {
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: opacity 0.5s, transform 0.5s;
-}
 
-.title.show {
-    opacity: 1;
-    transform: translateX(0);
+/* for large screen */
+@media (min-width:768px) {
+
+  /* animation */
+
+  .text-section {
+    opacity: 0; /* Initially hide the element */
+    animation: fade-in 1s ease-in-out forwards; /* Apply the fade-in animation */
+  
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0; /* Start with 0 opacity */
+    }
+    100% {
+      opacity: 1; /* Fade in to full opacity */
+    }
+  }
+
+  .title {
+      opacity: 0;
+      transform: translateX(-100%);
+      transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .title.show {
+      opacity: 1;
+      transform: translateX(0);
+  }
+  
 }

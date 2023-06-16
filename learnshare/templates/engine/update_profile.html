@@ -92,8 +92,9 @@ Profile
       <div class="col-9 overflow-auto mt-5" style="margin-left: 25%;">
         <!-- Display content goes here -->
         <div class="info" style="padding-top: 20px; padding-bottom: 20px; margin-inline: 100px;">
-          <form action="{% url 'update_profile' %}" method="post">
+          <form action="{% url 'update_profile' %}" enctype="multipart/form-data" method="post">
             {% csrf_token %}
+            <div>{{ update_profile_form.profile_img |as_crispy_field  }}</div>
             <div class="row">
                 <div class="col-6">{{ update_profile_form.first_name |as_crispy_field }}</div>
                 <div class="col-6">{{ update_profile_form.last_name |as_crispy_field  }}</div>
@@ -127,13 +128,6 @@ Profile
   <button class="dropdown-button mt-5 border-0 p-2">
     <i class="fas fa-bars"></i>
     My dashboard
-    <img
-      src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-      class="rounded-circle"
-      height="25"
-      alt="Black and White Portrait of a Man"
-      loading="lazy"
-    />
   </button>
   <br>
   <div class="dropdown">
@@ -142,22 +136,23 @@ Profile
     <!--end of dashboard-->
   </div>
 
-  <div class="profile me-auto mt-5 w-75 border" style="padding-inline:20px">
+  <div class="profile me-auto mt-5 w-100 border" style="padding-inline:20px">
     <!-- Display content goes here -->
-    <div class="profile-img" style="padding: 70px; padding-inline: 100px;">
-      <img
-      src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-      class="rounded-circle"
+    <img
+      src="{{ user_info.user_img.url }}"
+      class="rounded-circle me-5"
       height="100"
-      alt="Black and White Portrait of a Man"
+      width="100"
+      alt="Profile img"
       loading="lazy"
-      />
+    />
       
     </div>
     <div class="info" style="padding-top: 20px; padding-bottom: 20px;">
         <div class="container mt-4 w-100">
-            <form action="{% url 'update_profile' %}" method="post">
+            <form action="{% url 'update_profile' %}" enctype="multipart/form-data" method="post">
                 {% csrf_token %}
+                <div>{{ update_profile_form.profile_img |as_crispy_field  }}</div>
                 <div class="row">
                     <div class="col-6">{{ update_profile_form.first_name |as_crispy_field }}</div>
                     <div class="col-6">{{ update_profile_form.last_name |as_crispy_field  }}</div>
@@ -174,10 +169,10 @@ Profile
 
     <br><br>
 
-    <!--footer section-->
-    {% include 'engine/footer.html' %}
-    <!--end of footer section-->
   </div>
+  <!--footer section-->
+  {% include 'engine/footer.html' %}
+  <!--end of footer section-->
 </div>
 
 

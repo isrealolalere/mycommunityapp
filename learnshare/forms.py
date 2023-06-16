@@ -9,7 +9,11 @@ class CategoryForm(forms.Form):
     category = forms.ChoiceField(
         choices=CATEGORY_CHOICES,
         label='',
-        widget=forms.Select(attrs={'class': 'form-control custom-select', 'placeholder':'Filter by'})
+        widget=forms.Select(attrs={
+        'class': 'form-control custom-select cat-form',
+        'placeholder':'Filter by',
+
+        })
     )
 
 class NewPost(forms.ModelForm):
@@ -26,9 +30,11 @@ class SignUpForm(UserCreationForm):
         fields = ['profile_img', 'username', 'first_name', 'last_name', 'email', 'password1', 'password2']
 
 class UpdateProfileForm(UserChangeForm):
+    profile_img = forms.ImageField()
+
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email',]
+        fields = ['profile_img', 'username', 'first_name', 'last_name', 'email',]
 
 
 class LoginForm(forms.Form):

@@ -1,9 +1,13 @@
 {% extends 'engine/base.html' %} 
+{% load static %}
 
 {% block title %} 
 Reviews
 {% endblock title %} 
 
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/reviews.css' %}" />
+{% endblock %}
 
 {% block page_header %}
 <div class="container" style="margin-top: 200px;">
@@ -11,7 +15,7 @@ Reviews
 {% endblock %}
 
 {% block content %}
-<div class="container w-50">
+<div class="container w-100 review-fields-div">
 
     {% if messages %}
         {% for msg in messages %}
@@ -24,36 +28,38 @@ Reviews
             </div>
         {% endfor %}
     {% else %}
-        <div class="info">
+        <div class="text">
             <h4 class="text-center">Help us to satisfy you better</h4>
             <br>
         </div>
-        <form action="" method="POST">
-            {% csrf_token %}
-            <!-- Name input -->
-            <div class="row">
-                <div class="col-6 mb-2">
-                    <label class="form-label name" for="form4Example1">Name</label>
-                    <input type="text" name="name" id="form4Example1" class="form-control border border-primary rounded name-input" />
-                </div>
-        
-                <!-- Email input -->
-                <div class="col-6 mb-2">
-                    <label class="form-label email" for="form4Example2">Email address</label>
-                    <input type="email" name="email" id="form4Example2" class="form-control border border-primary rounded email-input" />
-                </div>
-        
-            </div>
+        <div class="container form-div me-auto">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="info">
+                    <!-- Name input -->
+                    <div class="mb-2">
+                        <label class="form-label name" for="form4Example1">Name</label>
+                        <input type="text" name="name" id="form4Example1" class="form-control border border-primary rounded name-input" />
+                    </div>
             
-            <!-- Message input -->
-            <div>
-                <label class="form-label text" for="form4Example3">Message</label>
-                <textarea class="form-control border border-primary rounded text-input" name="message" id="form4Example3" rows="4"></textarea>
-            </div>
+                    <!-- Email input -->
+                    <div class="mb-2">
+                        <label class="form-label email" for="form4Example2">Email address</label>
+                        <input type="email" name="email" id="form4Example2" class="form-control border border-primary rounded email-input" />
+                    </div>
+            
+                </div>
+                
+                <!-- Message input -->
+                <div>
+                    <label class="form-label text" for="form4Example3">Message</label>
+                    <textarea class="form-control border border-primary rounded text-input" name="message" id="form4Example3" rows="4"></textarea>
+                </div>
 
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4 mt-4">Send</button>
-        </form>
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4 mt-4">Send</button>
+            </form>
+        </div>
     {% endif %}
 </div>
 
