@@ -104,6 +104,7 @@ WSGI_APPLICATION = 'online_community.wsgi.application'
 #     }   
 # }
 
+
 #--------------------------
 # RENDER POSTGRESS DB CONFIG
 DATABASES = {
