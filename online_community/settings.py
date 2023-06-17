@@ -108,7 +108,7 @@ WSGI_APPLICATION = 'online_community.wsgi.application'
 #--------------------------
 # RENDER POSTGRESS DB CONFIG
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL')) 
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 
