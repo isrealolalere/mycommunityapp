@@ -10,11 +10,15 @@
         height: 20px;
     }
 
-    .cat-form{
-    }
-
     .filter-btn {
         width: 5px;
     }
 
+}
+
+/* for large screen */
+@media (min-width:768px) {
+    .category_form .cat-form{
+        width: 100%;
+    }
 }

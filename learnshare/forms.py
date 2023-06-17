@@ -10,8 +10,8 @@ class CategoryForm(forms.Form):
         choices=CATEGORY_CHOICES,
         label='',
         widget=forms.Select(attrs={
-        'class': 'form-control custom-select',
-
+        'class': 'form-control custom-select cat-form w-50',
+        'placeholder': 'Filter by'
         })
     )
 

@@ -93,23 +93,23 @@ WSGI_APPLICATION = 'online_community.wsgi.application'
 
 #-------------------------
 #POSTFRESQL DATABASE CONFIG
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME'  : 'LearnShare-db',
-#         'USER'  : 'postgres',
-#         'PASSWORD' : '08160075589Israel',
-#         'HOST'  : 'localhost',
-#         'PORT'  : '5432',
-#     }   
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME'  : 'LearnShare-db',
+        'USER'  : 'postgres',
+        'PASSWORD' : '08160075589Israel',
+        'HOST'  : 'localhost',
+        'PORT'  : '5432',
+    }   
+}
 
 
 #--------------------------
 # RENDER POSTGRESS DB CONFIG
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-}
+# DATABASES = {
+#     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+# }
 
 
 
