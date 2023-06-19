@@ -54,12 +54,13 @@ Home
 
 {% block content %}
 
-<div class="container w-75 mt-5">
+<div class="container w-100 mt-5">
 <h2 class="me-auto text-center">All Articles</h2>
 
 {% if all_post %}
+<div style="margin-inline: auto;" class="row row-cols-md-2 row-cols-lg-4 allpostrows">
   {% for post in all_post %}
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+    <div class="eachpost" style="width: 350px;">
       <!--new-->
       <div class="card text-light shadow-5-strong">
           <div class="card-header w-100">
@@ -172,7 +173,9 @@ Home
         <hr>
     </div>
   {% endfor %}
+</div>
 {% elif search_results %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
   {% for post in search_results %}
     <!--new-->
     <div class="card text-light shadow-5-strong">
@@ -277,6 +280,7 @@ Home
       <br><br>
       <hr>
     {% endfor %}
+</div>
 {% else %}
         <div>
             No post

@@ -79,11 +79,17 @@ def view_full_post(request, id):
     comment_form = CommentForm()
     category_form = CategoryForm()
 
+    if isinstance(request.user, AnonymousUser):
+        user_info = ""
+    else:
+        user_info = User_info.objects.filter(user=request.user)[0]
+
     context = {
         'post':post,
         'form':comment_form,
         'category_form':category_form,
         'all_post_comments': all_post_comments,
+        'user_info':user_info
     }
 
     return render(request, 'engine/view-post.html', context)

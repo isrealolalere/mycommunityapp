@@ -1,16 +1,22 @@
 {% extends 'engine/base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}
 New Post
 {% endblock title %} 
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/createpost.css' %}" />
+{% endblock %}
+
 {% block page_header %}
 <div class="container" style="margin-top: 200px;">
 </div>
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4 w-50">
+<div class="container form-div mt-4">
     <form action="{% url 'add_post' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -22,7 +28,7 @@ New Post
             <div class="col-8">{{ post_form.title |as_crispy_field }}</div>
             <div class="col-4">{{ post_form.category |as_crispy_field  }}</div>
         </div>
-        <div>
+        <div class="summary-div">
             {{ post_form.summary |as_crispy_field }}
         </div>
         {{ post_form.content |as_crispy_field }}

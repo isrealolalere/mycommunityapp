@@ -112,23 +112,11 @@
       transform: translateX(0);
     }
 
-    /* .search{
+    .allpostrows .eachpost{
+      margin: auto;
       width: 100%;
     }
 
-    form .search-bar{
-      width: 75%;
-      height: 30px;
-      margin: auto;
-    }
-
-    #search-div .filter-icon{
-      border-radius: 50%; 
-      margin-left: -100px; 
-      margin-bottom: 21px; 
-      padding: 5px 10px;
-    } */
-    
   }
 
 
