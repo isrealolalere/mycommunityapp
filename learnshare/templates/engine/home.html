@@ -80,24 +80,28 @@ Home
       </div>
       <!--end of new-->
       <br>
-      <!--read more-->
-      <a href="{% url 'view_full_post' id=post.id %}" class="btn btn-primary">Read full post</a>
-      <!--likes-->
-      <span>
-          <button class="btn btn-primary like-button" data-post-id="{{ post.id }}" data-csrf-token="{{ csrf_token }}">
-              {{ post.likes }}
-              <i class="far fa-thumbs-up"></i>
+      <div class="actions">
+        <!--read more-->
+        <span>
+          <a href="{% url 'view_full_post' id=post.id %}" id="view-full" class="btn btn-primary text">Read</a>
+        </span>
+        <!--likes-->
+        <span>
+            <button class="btn btn-primary like-button" data-post-id="{{ post.id }}" data-csrf-token="{{ csrf_token }}">
+                {{ post.likes }}
+                <i class="far fa-thumbs-up"></i>
+            </button>
+        </span>
+        <!--comment-->
+        <span>
+          <a href="#comment">
+          <button class="btn btn-primary comment">
+              <i class="far fa-comment-alt"></i>
+              {{ post.total_comments }}
           </button>
-      </span>
-      <!--comment-->
-      <span>
-        <a href="#comment">
-        <button class="btn btn-primary comment">
-            <i class="far fa-comment-alt"></i>
-            {{ post.total_comments }}
-        </button>
-        </a>
-      </span>
+          </a>
+        </span>
+      </div>
       <br><br><br>
       <form action="{% url 'post_comment' id=post.id %}" method="post">
         {% csrf_token %}
@@ -196,7 +200,7 @@ Home
     </div>
     <!--end of new-->
     <br>
-    <a href="{% url 'view_full_post' id=post.id %}" class="btn btn-primary">Read full post</a>
+    <a href="{% url 'view_full_post' id=post.id %}" id="view" class="btn btn-primary">Read</a>
     <span>
         <button class="btn btn-primary like-button" data-post-id="{{ post.id }}" data-csrf-token="{{ csrf_token }}">
             {{ post.likes }}
@@ -312,6 +316,8 @@ Home
                 console.log('liked')
             }
         })
+
+        
     
     });
 
