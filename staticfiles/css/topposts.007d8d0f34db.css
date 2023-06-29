@@ -1,0 +1,10 @@
+/* for small screen */
+@media (max-width:767px) {
+    /* .parent{
+        width:100%;
+    }
+    .parent > .container{
+        width:75%;
+        margin: auto;
+    } */
+}

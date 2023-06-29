@@ -1,0 +1,12 @@
+/* for large screen */
+@media (min-width:768px) {
+    .form-div{
+        width: 100%;
+    }
+
+    .form-div > form {
+        width: 50%;
+        margin: auto;
+    }
+
+}

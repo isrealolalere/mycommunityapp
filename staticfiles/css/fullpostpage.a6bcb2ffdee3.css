@@ -1,0 +1,27 @@
+  /* for small screen */
+  @media (max-width:767px) {
+    .fullcontainer{
+      width: 100%;
+    }
+
+    .fullcontainer > .post{
+      width: 90%;
+      margin: auto;
+    }
+
+  }
+
+
+
+  /* for large screen */
+  @media (min-width:768px) {
+    .fullcontainer{
+        width: 100%;
+    }
+
+    .fullcontainer > .post{
+        width: 75%;
+        margin: auto;
+    }
+    
+  }
