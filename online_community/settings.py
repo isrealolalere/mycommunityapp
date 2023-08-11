@@ -12,8 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
-import dj_database_url
+import cloudinary_storage
+# import dj_database_url
+from dotenv import load_dotenv
 
+load_dotenv()
 
 VERSION = '3.11.3'
 
@@ -46,6 +49,8 @@ INSTALLED_APPS = [
     'learnshare',
     'crispy_forms',
     'crispy_bootstrap4',
+    'cloudinary',
+    'cloudinary_storage'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -107,9 +112,18 @@ WSGI_APPLICATION = 'online_community.wsgi.application'
 
 
 #--------------------------
-# RENDER POSTGRESS DB CONFIG
+# RAILWAY POSTGRESS DB CONFIG
+
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'URL': 'postgresql://postgres:OKuoDjVWkxmigsISl0xy@containers-us-west-135.railway.app:7888/railway',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': 'containers-us-west-135.railway.app',
+        'PORT': '7888',
+    }
 }
 
 
@@ -159,10 +173,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #own config
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'learnshare/static/')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = '/learnshare/login'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dxngeghlx',
+    'API_KEY' : '167654935395121',
+    'API_SECRET' : 'Uv6lUpRGZd8PrBtd7LD0nNza-XI',
+
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Email Configuration
 
