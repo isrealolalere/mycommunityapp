@@ -179,14 +179,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = '/learnshare/login'
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dxngeghlx',
-    'API_KEY' : '167654935395121',
-    'API_SECRET' : 'Uv6lUpRGZd8PrBtd7LD0nNza-XI',
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'dxngeghlx',
+#     'API_KEY' : '167654935395121',
+#     'API_SECRET' : 'Uv6lUpRGZd8PrBtd7LD0nNza-XI',
 
-}
+# }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Email Configuration
 
