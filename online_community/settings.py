@@ -90,12 +90,12 @@ WSGI_APPLICATION = 'online_community.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 #-------------------------
 #POSTFRESQL DATABASE CONFIG
@@ -114,17 +114,17 @@ WSGI_APPLICATION = 'online_community.wsgi.application'
 #--------------------------
 # RAILWAY POSTGRESS DB CONFIG
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'URL': 'postgresql://postgres:OKuoDjVWkxmigsISl0xy@containers-us-west-135.railway.app:7888/railway',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST': 'containers-us-west-135.railway.app',
-        'PORT': '7888',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'URL': 'postgresql://postgres:OKuoDjVWkxmigsISl0xy@containers-us-west-135.railway.app:7888/railway',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+#         'HOST': 'containers-us-west-135.railway.app',
+#         'PORT': '7888',
+#     }
+# }
 
 
 
